@@ -7,8 +7,10 @@ discount = 0.3
 actions = World.actions
 states = []
 Q = {}
-for i in range(World.x):
-    for j in range(World.y):
+
+# Create list of world axis
+for i in range(World.x): # i in x axis
+    for j in range(World.y): # j in y axis
         states.append((i, j))
 
 for state in states:
@@ -28,13 +30,13 @@ def do_action(action):
     s = World.player
     r = -World.score
     if action == actions[0]:
-        World.try_move(0, -1)
+        World.try_move(0, -1) # Move down
     elif action == actions[1]:
-        World.try_move(0, 1)
+        World.try_move(0, 1) # Move up
     elif action == actions[2]:
-        World.try_move(-1, 0)
+        World.try_move(-1, 0) # Move left
     elif action == actions[3]:
-        World.try_move(1, 0)
+        World.try_move(1, 0) # Move right
     else:
         return
     s2 = World.player
