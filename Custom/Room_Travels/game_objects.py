@@ -10,23 +10,6 @@ Each room has a certain number of paths to other rooms
 
 """
 
-class GameManager:
-    def __init__(self):
-        self.rooms = []
-        self.paths = []
-
-    def add_room(self, room):
-        if room in self.rooms:
-            print "Room already exists"
-        else:
-            self.rooms.append(room)
-
-    def add_path(self, path):
-        if path in self.paths:
-            print "Path already exists"
-        else:
-            self.paths.append(path)
-
 class Room:
     def __init__(self, room_name, num_doors, is_start = False, is_goal = False):
         self.room_name = room_name
@@ -35,19 +18,21 @@ class Room:
         self.is_goal = is_goal
         self.paths = []
 
-    def add_path(self, path):
+    def add_path(self, room):
         """
         Add a path to another room with this room set as the origin
         :param path: Path to another room
         """
-        if path.room_one.room_name != self.room_name:
-            print "Path's first room is not this room. Not added"
+        if room == self:
+            print "You cannot add a path to yourself. Not added"
         else:
-            self.paths.append(path)
+            self.paths.append(Path(self, room))
 
 
 class Path:
-    def __init__(self, room_one, room_two, path_weight):
+    def __init__(self, room_one, room_two, path_weight = 0):
         self.room_one = room_one
         self.room_two = room_two
         self.path_weight = path_weight
+
+        self.path_name = room_one.room_name + room_two.room_name
