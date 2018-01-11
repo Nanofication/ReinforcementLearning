@@ -3,7 +3,7 @@ Markov Chain Introduction
 
 1. Set of Possible States: S = {s0, s1, s2 ..., sm}
 2. Initial State: s0
-3. Transition Model: T = (s,a,s') Probability go to State s' from state s using action a
+3. Transition Model: T = (s,s') Probability go to State s' from state s
 
 Assumptions:
 Given the present, the future is conditionally independent of the past.
@@ -71,4 +71,3 @@ if __name__ == "__main__":
     print "Distribution after 100 Step: ", np.dot(v, getTransitionMatrix(T, 100))
 
     # NOTE: More steps takes us closer to equilibrium
-    
